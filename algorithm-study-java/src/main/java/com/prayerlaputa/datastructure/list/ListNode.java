@@ -1,7 +1,7 @@
 package com.prayerlaputa.datastructure.list;
 
 /**
- * @author chenglong.yu@brgroup.com
+ * @author chenglong.yu
  * created on 2020/7/13
  */
 public class ListNode <T> {

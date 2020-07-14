@@ -49,7 +49,18 @@ public class BinaryTree {
     }
 
     public void inOrderTraverseTree(TreeNode root) {
-
+        Deque<TreeNode> stack = new LinkedList<>();
+        TreeNode node = root;
+        while(null != node || !stack.isEmpty()) {
+            if (null != node) {
+                stack.push(node);
+                node = node.left;
+            } else {
+                TreeNode tmpNode = stack.pop();
+                printNode(tmpNode);
+                node = tmpNode.right;
+            }
+        }
     }
 
     public void postOrderTraverseTreeRecursively(TreeNode root) {
@@ -63,7 +74,30 @@ public class BinaryTree {
     }
 
     public void postOrderTraverseTree(TreeNode root) {
+        if (null == root) {
+            return;
+        }
 
+        TreeNode curNode, preNode = null;
+        Deque<TreeNode> stack = new LinkedList<>();
+        Deque<TreeNode> output = new LinkedList<>();
+        stack.push(root);
+        curNode = root;
+        while(null != curNode || !stack.isEmpty()) {
+            if (curNode != null) {
+                stack.push(curNode);
+                output.push(curNode);
+                curNode = curNode.right;
+            } else {
+                curNode = stack.pop();
+                curNode = curNode.left;
+            }
+        }
+
+        while(output.size() > 0) {
+            TreeNode node = output.pop();
+            printNode(node);
+        }
     }
 
 }
